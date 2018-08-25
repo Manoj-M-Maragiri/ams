@@ -1,0 +1,22 @@
+CREATE TABLE USER_MASTER(USERID VARCHAR2(6) primary key, USERNAME VARCHAR2(15), USERPASSWORD VARCHAR2(50), USERTYPE VARCHAR2(10));
+CREATE TABLE Department(Dept_ID number primary key, Dept_Name VARCHAR2(50)); 
+CREATE TABLE Employee(Empno Number(6) primary key, Ename Varchar2(25), job Varchar2(50), mgr VARCHAR2(6), hiredate date, Dept_ID number,CONSTRAINT fk_mgr foreign key (mgr) REFERENCES USER_MASTER(USERID),CONSTRAINT fk_deptid foreign key (Dept_ID) REFERENCES Department(Dept_ID)); 
+CREATE TABLE Asset(AssetId Number primary key, AssetName Varchar2(25), AssetDes Varchar2(25), Quantity Number, Status Varchar2(15));
+CREATE TABLE Asset_Allocation(AllocationId Number primary key, AssetId Number, Empno Number(6), Allocation_date Date, Release_date Date,CONSTRAINT fk_astid foreign key (AssetId) REFERENCES Asset(AssetId Number),CONSTRAINT fk_empno foreign key (Empno) REFERENCES Employee(Empno));
+
+
+
+INSERT into USER_MASTER values('180006','biswa','bisroy9','M');
+INSERT into USER_MASTER values('180007','tiswa','tisroy9','M');
+INSERT into USER_MASTER values('180008','aiswa','aisroy9','M');
+INSERT into USER_MASTER values('180009','qiswa','qisroy9','M');
+
+
+SELECT UserName,UserPassword FROM User_Master;
+
+INSERT into USER_MASTER values('180002','wiswa','wisroy9','A');
+
+
+
+drop table Department;
+drop table user_master;
